@@ -1,0 +1,10 @@
+{{- $theme_choices := list "catppuccin" "tokyonights" -}}
+{{- $theme := promptChoiceOnce . "Theme" "Which theme do you prefer" $theme_choices -}}
+{{- $theme_variant_choices := list "light" "dark" -}}
+{{- $theme_variant := promptChoiceOnce . "Theme" "Which theme variant do you prefer" $theme_variant_choices -}}
+{{- $hyde := and (eq .chezmoi.os "linux") (promptBoolOnce . "HyDE" "Are you using HyDE") -}}
+
+[data]
+  theme = {{ $theme | quote }}
+  theme_variant = {{ $theme_variant | quote }}
+  hyde = {{ $hyde }}
