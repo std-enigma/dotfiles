@@ -1,0 +1,24 @@
+{
+  "vim_mode": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "relative_line_numbers": true,
+  "use_smartcase_search": true,
+  "base_keymap": "VSCode",
+  "icon_theme": "Catppuccin Mocha",
+  "auto_install_extensions": {
+    "catppuccin": true,
+    "catppuccin-icons": true,
+    "discord-presence": true,
+    "tokyo-night": true
+  },
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+  "vim": {
+    "use_smartcase_find": true,
+    "use_system_clipboard": "on_yank"
+  }
+}
