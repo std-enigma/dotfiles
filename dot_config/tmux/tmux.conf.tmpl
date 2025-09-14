@@ -1,0 +1,77 @@
+# Set the prefix keys
+set -g prefix C-a
+
+# Configure options
+set -g mouse on
+set -g mode-keys vi
+set -g set-clipboard on
+set -g history-limit 100000
+set -g escape-time 0
+
+# Configure pane/window options
+set -g base-index 1
+set -g pane-base-index 1
+set -g renumber-windows on
+
+# Plugins
+{{ if eq .theme "catppuccin" -}}
+set -g @plugin 'catppuccin/tmux'
+{{- end }}
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-open'
+set -g @plugin 'tmux-plugins/tmux-battery'
+set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'tmux-plugins/tmux-pain-control'
+set -g @plugin 'omerxx/tmux-sessionx'
+
+# Save shell history in panes
+set -g @resurrect-capture-pane-contents "on"
+
+# Search selected text on Google with Shift-s
+set -g @open-S 'https://www.google.com/search?q='
+
+# Configure the status-line style
+set -g status-left ""
+set -g status-interval 5
+set -g status-left-length 100
+set -g status-right-length 100
+set -g status-position top
+
+{{ if eq .theme "catppuccin" -}}
+# Configure the catppuccin plugin
+{{ if eq .theme_variant "light" -}}
+set -g @catppuccin_flavor 'latte'
+{{- else if eq .theme_variant "dark" -}}
+set -g @catppuccin_flavor 'mocha'
+{{- end }}
+set -g @catppuccin_date_time_text " %Y-%m-%d"
+
+{{ if eq .theme "catppuccin" -}}
+# Run catppuccin
+run '~/.config/tmux/plugins/tmux/catppuccin.tmux'
+{{- end }}
+
+# Configure the catppuccin's window style
+set -g @catppuccin_window_flags "icon"
+set -g @catppuccin_window_status_style "rounded"
+set -g @catppuccin_window_text "#{?#{==:#W,#{basename #{pane_current_path}}}, #{b:pane_current_path}, #W}"
+
+# Configure the catppuccin's current window style
+set -g @catppuccin_window_current_text "#{?#{==:#W,#{basename #{pane_current_path}}}, #{b:pane_current_path}, #W}"
+set -g @catppuccin_window_current_left_separator "#[fg=#{@_ctp_status_bg},reverse]#[none]"
+set -g @catppuccin_window_current_right_separator "#[fg=#{@_ctp_status_bg},reverse]#[none]"
+
+# Make the status line pretty and add some modules
+set -g status-right "#{E:@catppuccin_status_application}"
+set -ag status-right "#{?#{m:*[a-zA-Z]*,#S},#{E:@catppuccin_status_session},}"
+set -agF status-right "#{E:@catppuccin_status_cpu}"
+set -agF status-right "#{E:@catppuccin_status_battery}"
+set -agF status-right "#{E:@catppuccin_status_date_time}"
+{{- end }}
+
+run '~/.tmux/plugins/tpm/tpm'
