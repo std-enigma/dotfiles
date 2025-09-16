@@ -50,11 +50,11 @@ set -g @catppuccin_flavor 'latte'
 set -g @catppuccin_flavor 'mocha'
 {{- end }}
 set -g @catppuccin_date_time_text " %Y-%m-%d"
+{{- end }}
 
 {{ if eq .theme "catppuccin" -}}
 # Run catppuccin
 run '~/.config/tmux/plugins/tmux/catppuccin.tmux'
-{{- end }}
 
 # Configure the catppuccin's window style
 set -g @catppuccin_window_flags "icon"
