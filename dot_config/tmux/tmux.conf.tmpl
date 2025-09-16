@@ -16,6 +16,8 @@ set -g renumber-windows on
 # Plugins
 {{ if eq .theme "catppuccin" -}}
 set -g @plugin 'catppuccin/tmux'
+{{- else if eq .theme "tokyonight" -}}
+set -g @plugin "janoamaral/tokyo-night-tmux"
 {{- end }}
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-cpu'
@@ -50,6 +52,18 @@ set -g @catppuccin_flavor 'latte'
 set -g @catppuccin_flavor 'mocha'
 {{- end }}
 set -g @catppuccin_date_time_text " %Y-%m-%d"
+{{- end -}}
+
+{{ if eq .theme "tokyonight" -}}
+# Configure the tokyonight plugin
+{{ if eq .theme_variant "light" -}}
+set -g @tokyo-night-tmux_theme 'day'
+{{- else if eq .theme_variant "dark" -}}
+set -g @tokyo-night-tmux_theme 'night'
+{{- end }}
+set -g @tokyo-night-tmux_show_path 1
+set -g @tokyo-night-tmux_path_format 'relative'
+set -g @tokyo-night-tmux_show_battery_widget 1
 {{- end }}
 
 {{ if eq .theme "catppuccin" -}}
@@ -72,6 +86,10 @@ set -ag status-right "#{?#{m:*[a-zA-Z]*,#S},#{E:@catppuccin_status_session},}"
 set -agF status-right "#{E:@catppuccin_status_cpu}"
 set -agF status-right "#{E:@catppuccin_status_battery}"
 set -agF status-right "#{E:@catppuccin_status_date_time}"
+{{- else if eq .theme "tokyonight" -}}
+# Run tokyonight
+run '~/.config/tmux/plugins/tokyo-night-tmux/tokyo-night.tmux'
 {{- end }}
 
+# Run tpm
 run '~/.tmux/plugins/tpm/tpm'
