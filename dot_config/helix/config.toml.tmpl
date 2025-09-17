@@ -1,0 +1,37 @@
+{{ if eq .theme "catppuccin" -}}
+{{ if eq .theme_variant "light" -}}
+theme = "catppuccin_latte"
+{{- else if eq .theme_variant "dark" -}}
+theme = "catppuccin_mocha"
+{{- end -}}
+{{- end }}
+
+{{- if eq .theme "tokyonight" -}}
+{{ if eq .theme_variant "light" -}}
+theme = "tokyonight_day"
+{{- else if eq .theme_variant "dark" -}}
+theme = "tokyonight"
+{{- end -}}
+{{- end }}
+
+[editor]
+scrolloff = 0
+cursorline = true
+color-modes = true
+trim-trailing-whitespace = true
+trim-final-newlines = true
+line-number = "relative"
+bufferline = "multiple"
+popup-border = "all"
+
+[editor.cursor-shape]
+select = "underline"
+insert = "bar"
+
+[editor.indent-guides]
+skip-levels = 1
+character = "▏"
+render = true
+
+[keys.insert]
+j = { k = "normal_mode" }
