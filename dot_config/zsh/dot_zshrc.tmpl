@@ -1,0 +1,20 @@
+#  This is your file 
+# Add your configurations here
+export EDITOR=nvim
+
+# Configure FZF
+{{ if eq .theme "catppuccin" -}}
+{{ if eq .theme_variant "light" -}}
+source ~/.config/fzf/catppuccin-latte-theme.sh
+{{- else if eq .theme_variant "dark" -}}
+source ~/.config/fzf/catppuccin-mocha-theme.sh
+{{- end -}}
+{{- end }}
+
+{{- if eq .theme "tokyonight" -}}
+{{ if eq .theme_variant "light" -}}
+source ~/.config/fzf/tokyonight-day-theme.sh
+{{- else if eq .theme_variant "dark" -}}
+source ~/.config/fzf/tokyonight-night-theme.sh
+{{- end -}}
+{{- end }}
