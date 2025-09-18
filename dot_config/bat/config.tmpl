@@ -1,0 +1,22 @@
+# Configure the theme
+{{ if eq .theme "catppuccin" -}}
+{{ if eq .theme_variant "light" -}}
+--theme="catppuccin-latte"
+{{- else if eq .theme_variant "dark" -}}
+--theme="catppuccin-mocha"
+{{- end -}}
+{{- end }}
+
+{{- if eq .theme "tokyonight" -}}
+{{ if eq .theme_variant "light" -}}
+--theme="tokyonight-day"
+{{- else if eq .theme_variant "dark" -}}
+--theme="tokyonight-night"
+{{- end -}}
+{{- end }}
+
+# Allow italics
+--italic-text=always
+
+# Enable mouse scrolling inside tmux.
+--pager="less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse"
