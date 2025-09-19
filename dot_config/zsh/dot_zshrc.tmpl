@@ -2,6 +2,10 @@
 # Add your configurations here
 export EDITOR=nvim
 
+# Configure zoxide
+alias cd="z"
+eval "$(zoxide init zsh)"
+
 # Configure FZF
 {{ if eq .theme "catppuccin" -}}
 {{ if eq .theme_variant "light" -}}
