@@ -1,0 +1,34 @@
+[include]
+{{- if eq .theme "catppuccin" }}
+    path = "~/.config/git/themes/catppuccin.gitconfig"
+{{- else if eq .theme "tokyonight" }}
+    path = "~/.config/git/themes/tokyonight.gitconfig"
+{{- end }}
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+{{- if eq .theme "catppuccin" }}
+{{- if eq .theme_variant "light" }}
+    features = "catppuccin-latte"
+{{- else if eq .theme_variant "dark" }}
+    features = "catppuccin-mocha"
+{{- end -}}
+{{- end }}
+{{- if eq .theme "tokyonight" }}
+{{- if eq .theme_variant "light" }}
+    features = "tokyonight-day"
+{{- else if eq .theme_variant "dark" }}
+    features = "tokyonight-night"
+{{- end -}}
+{{- end }}
+    navigate = true
+    line-numbers = true
+    side-by-side = true
+
+[merge]
+    conflictStyle = zdiff3
