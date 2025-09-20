@@ -6,6 +6,11 @@ export EDITOR=nvim
 alias cd="z"
 eval "$(zoxide init zsh)"
 
+# Configure the-fuck
+eval $(thefuck --alias)
+eval $(thefuck --alias tf)
+eval $(thefuck --alias fk)
+
 # Configure FZF
 {{ if eq .theme "catppuccin" -}}
 {{ if eq .theme_variant "light" -}}
