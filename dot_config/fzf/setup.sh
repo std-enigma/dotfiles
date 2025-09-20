@@ -1,9 +1,10 @@
 #----------------------------------------------
-# FZF Configuration with fd, bat, and eza
+# FZF Configuration with fd, bat, eza, and fzf-git
 #----------------------------------------------
 # - fd: Fast file/directory search (replaces `find`)
 # - bat: Syntax-highlighted file preview
 # - eza: Colorful ls replacement with tree/dir display
+# - fzf-git: Git-aware FZF integration (branches, commits, tags)
 #----------------------------------------------
 
 # Generic preview command:
@@ -70,3 +71,10 @@ export FZF_CTRL_T_OPTS="
 # Alt-C: directory picker
 export FZF_ALT_C_COMMAND='fd --type d --hidden --strip-cwd-prefix --exclude .git'
 export FZF_ALT_C_OPTS="--preview 'eza --tree --level=2 --icons --color=always {} | head -200'"
+
+#----------------------------------------------
+# Git-related FZF helpers
+#----------------------------------------------
+
+# Adds Git-aware search commands (branches, commits, tags, etc.)
+source ~/.config/fzf/fzf-git.sh
