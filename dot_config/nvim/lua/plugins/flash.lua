@@ -96,7 +96,9 @@ return {
 				keys = { "f", "F", "t", "T" },
 				config = function(opts)
 					-- autohide flash when in operator-pending mode
-					opts.autohide = opts.autohide or (vim.fn.mode(true):find("no") and vim.v.operator == "y")
+					opts.autohide = opts.autohide
+						or (vim.fn.mode(true):find("no") and vim.v.operator == "y")
+						or vim.v.count > 0
 
 					-- Show jump labels only in operator-pending mode
 					opts.jump_labels = vim.v.count == 0 and vim.fn.mode(true):find("o")
