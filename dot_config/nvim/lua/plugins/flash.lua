@@ -91,28 +91,15 @@ return {
 	---@type Flash.Config
 	opts = {
 		modes = {
-			search = {
-				enabled = true,
-			},
 			char = {
-				enabled = true,
 				jump = { autojump = true },
 				keys = { "f", "F", "t", "T" },
 				config = function(opts)
-					local mode = vim.fn.mode(true)
-					local operator = vim.v.operator
-					local count = vim.v.count
-					local recording = vim.fn.reg_recording() ~= ""
-					local executing = vim.fn.reg_executing() ~= ""
-
 					-- autohide flash when in operator-pending mode
-					opts.autohide = opts.autohide or (mode:find("no") and operator == "y")
+					opts.autohide = opts.autohide or (vim.fn.mode(true):find("no") and vim.v.operator == "y")
 
-					-- disable jump labels when not enabled or recording/executing/count
-					opts.jump_labels = opts.jump_labels and count == 0 and not recording and not executing
-
-					-- show jump labels only in operator-pending mode
-					opts.jump_labels = count == 0 and mode:find("o")
+					-- Show jump labels only in operator-pending mode
+					opts.jump_labels = vim.v.count == 0 and vim.fn.mode(true):find("o")
 				end,
 			},
 		},
