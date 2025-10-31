@@ -1,22 +1,5 @@
 ---@type LazySpec
 return {
-	-- Customize flash.nvim
-	{
-		"folke/flash.nvim",
-		config = function(_, opts)
-			opts.modes = opts.modes or {}
-			opts.modes.search = opts.modes.search or {}
-			opts.modes.char = opts.modes.char or {}
-			opts.modes.char.jump = opts.modes.char.jump or {}
-
-			opts.modes.search.enabled = true
-			opts.modes.char.jump.autojump = true
-			opts.modes.char.jump_labels = true
-
-			require("flash").setup(opts)
-		end,
-	},
-
 	-- Customize LuaSnip
 	{
 		"L3MON4D3/LuaSnip",

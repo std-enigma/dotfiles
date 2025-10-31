@@ -25,9 +25,6 @@ return {
 	-- Better % navigation
 	{ import = "astrocommunity.motion.vim-matchup" },
 
-	-- Move around the buffer like flash
-	{ import = "astrocommunity.motion.flash-nvim" },
-
 	-- Better lsp renaming functionality
 	{ import = "astrocommunity.lsp.inc-rename-nvim" },
 
