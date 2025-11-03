@@ -68,9 +68,10 @@ set -g @catppuccin_date_time_text " %Y-%m-%d"
 {{ if eq .theme_variant "light" -}}
 set -g @tokyo-night-tmux_theme 'day'
 {{- else if eq .theme_variant "dark" -}}
-set -g @tokyo-night-tmux_theme 'night'
+set -g @tokyo-night-tmux_theme 'storm'
 {{- end }}
 set -g @tokyo-night-tmux_show_path 1
+set -g @tokyo-night-tmux_transparent 1
 set -g @tokyo-night-tmux_path_format 'relative'
 set -g @tokyo-night-tmux_show_battery_widget 1
 {{- end }}
