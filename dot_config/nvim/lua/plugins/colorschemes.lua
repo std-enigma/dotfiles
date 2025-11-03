@@ -5,8 +5,9 @@ return {
 		"catppuccin",
 		---@type CatppuccinOptions
 		opts = {
-			term_colors = true,
-			dim_inactive = { enabled = true },
+			term_colors = true, -- configure terminal colors
+			dim_inactive = { enabled = true }, -- dims inactive windows
+			transparent_background = not vim.g.neovide, -- enable transparency
 			styles = {
 				conditionals = { "bold", "italic" }, -- expressive flow control
 				loops = { "bold" }, -- structural emphasis
@@ -28,8 +29,7 @@ return {
 		"folke/tokyonight.nvim",
 		---@type tokyonight.Config
 		opts = {
-			style = "night",
-			light_style = "day",
+			style = "storm", -- default colorscheme style
 			styles = {
 				conditionals = { bold = true, italic = true }, -- expressive flow control
 				loops = { bold = true }, -- structural emphasis
@@ -37,7 +37,10 @@ return {
 				keywords = { italic = true }, -- refined but subdued
 				booleans = { bold = true }, -- logical standouts
 				types = { bold = true }, -- consistent with LSP semantics
+				sidebars = not vim.g.neovide and "transparent" or "normal", -- style for sidebars
+				floats = not vim.g.neovide and "transparent" or "normal", -- style for floating windows
 			},
+			transparent = not vim.g.neovide, -- enable transparency
 			dim_inactive = true, -- dims inactive windows
 		},
 	},
