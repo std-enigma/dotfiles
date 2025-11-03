@@ -13,17 +13,17 @@
 	# Should match the name of the bat theme
 	syntax-theme = tokyonight-day
 
-[delta "tokyonight-night"]
-  minus-style                   = syntax "#37222c"
-  minus-non-emph-style          = syntax "#37222c"
-  minus-emph-style              = syntax "#713137"
-  minus-empty-line-marker-style = syntax "#37222c"
+[delta "tokyonight-storm"]
+  minus-style                   = syntax "#52313f"
+  minus-non-emph-style          = syntax "#52313f"
+  minus-emph-style              = syntax "#763842"
+  minus-empty-line-marker-style = syntax "#52313f"
   line-numbers-minus-style      = "#914c54"
-  plus-style                    = syntax "#20303b"
-  plus-non-emph-style           = syntax "#20303b"
-  plus-emph-style               = syntax "#2c5a66"
-  plus-empty-line-marker-style  = syntax "#20303b"
+  plus-style                    = syntax "#2b485a"
+  plus-non-emph-style           = syntax "#2b485a"
+  plus-emph-style               = syntax "#316172"
+  plus-empty-line-marker-style  = syntax "#2b485a"
   line-numbers-plus-style       = "#449dab"
   line-numbers-zero-style       = "#3b4261"
 	# Should match the name of the bat theme
-	syntax-theme = tokyonight-night
+	syntax-theme = tokyonight-storm
