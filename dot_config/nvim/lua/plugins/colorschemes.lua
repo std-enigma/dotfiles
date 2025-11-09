@@ -6,7 +6,7 @@ return {
 		---@type CatppuccinOptions
 		opts = {
 			term_colors = true, -- configure terminal colors
-			dim_inactive = { enabled = true }, -- dims inactive windows
+			float = { transparent = true }, -- enable transparency for floating-windows
 			transparent_background = not vim.g.neovide, -- enable transparency
 			styles = {
 				conditionals = { "bold", "italic" }, -- expressive flow control
@@ -41,7 +41,6 @@ return {
 				floats = not vim.g.neovide and "transparent" or "normal", -- style for floating windows
 			},
 			transparent = not vim.g.neovide, -- enable transparency
-			dim_inactive = true, -- dims inactive windows
 		},
 	},
 }
