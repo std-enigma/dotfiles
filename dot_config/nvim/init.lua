@@ -25,13 +25,7 @@ require("lazy").setup({
 	{ import = "community" },
 	{ import = "plugins" },
 } --[[@as LazySpec]], {
-{{- if eq .theme "catppuccin" }}
 	install = { colorscheme = { "catppuccin", "astrotheme" } },
-{{- else if eq .theme "tokyonight" }}
-	install = { colorscheme = { "tokyonight", "astrotheme" } },
-{{- else }}
-	install = { colorscheme = { "astrotheme" } },
-{{- end }}
 	checker = { enabled = true },
 	ui = { backdrop = 100 },
 	performance = {

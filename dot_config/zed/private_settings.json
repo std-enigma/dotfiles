@@ -14,13 +14,8 @@
   },
   "theme": {
     "mode": "system",
-{{- if eq .theme "catppuccin" }}
     "light": "Catppuccin Latte",
     "dark": "Catppuccin Mocha"
-{{ else if eq .theme "tokyonight" }}
-    "light": "Tokyo Night Light",
-    "dark": "Tokyo Night Storm"
-{{- end }}
   },
   "vim": {
     "use_smartcase_find": true,

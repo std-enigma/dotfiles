@@ -1,0 +1,8 @@
+# Configure the theme
+--theme="catppuccin"
+
+# Allow italics
+--italic-text=always
+
+# Enable mouse scrolling inside tmux.
+--pager="less --RAW-CONTROL-CHARS --quit-if-one-screen --mouse"
