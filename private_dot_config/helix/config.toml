@@ -1,0 +1,56 @@
+# --- Colorscheme ---
+theme = "noctalia"
+
+# --- Editor Behavior ---
+[editor]
+cursorline = true
+color-modes = true
+popup-border = "all"
+bufferline = "multiple"
+line-number = "relative"
+end-of-line-diagnostics = "hint"
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+
+[editor.file-picker]
+hidden = false
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.indent-guides]
+render = true
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+# --- Keybindings ---
+[keys.insert]
+# Exit insert mode
+j = { j = "normal_mode", k = "normal_mode" }
+
+[keys.normal]
+# Window Management
+esc = ["collapse_selection"]
+C-h = ["jump_view_left"]
+C-l = ["jump_view_right"]
+C-k = ["jump_view_up"]
+C-j = ["jump_view_down"]
+C-q = ["wclose"]
+
+# Line Manipulation
+A-k = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
+A-j = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_down",
+  "paste_before",
+]
