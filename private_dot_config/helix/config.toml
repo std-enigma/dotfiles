@@ -54,3 +54,11 @@ A-j = [
   "move_line_down",
   "paste_before",
 ]
+A-l = [
+  "extend_to_line_bounds",
+  "indent",
+]
+A-h = [
+  "extend_to_line_bounds",
+  "unindent",
+]
