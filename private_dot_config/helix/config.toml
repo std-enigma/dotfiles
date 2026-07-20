@@ -41,6 +41,9 @@ C-k = ["jump_view_up"]
 C-j = ["jump_view_down"]
 C-q = ["wclose"]
 
+# Line Selection
+X = ["extend_line_above"]
+
 # Line Manipulation
 A-k = [
   "extend_to_line_bounds",
