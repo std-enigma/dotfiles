@@ -111,16 +111,8 @@ hl.bind(mainMod .. " + CTRL + L", hl.dsp.group.next(), { desc = "Switch to the n
 --- Workspace Management ---
 
 -- Workspace Navigation
-hl.bind(
-	mainMod .. " + CONTROL + Left",
-	hl.dsp.focus({ workspace = "r-1" }),
-	{ desc = "Go to previous workspace" }
-)
-hl.bind(
-	mainMod .. " + CONTROL + Right",
-	hl.dsp.focus({ workspace = "r+1" }),
-	{ desc = "Go to next workspace" }
-)
+hl.bind(mainMod .. " + CONTROL + Left", hl.dsp.focus({ workspace = "r-1" }), { desc = "Go to previous workspace" })
+hl.bind(mainMod .. " + CONTROL + Right", hl.dsp.focus({ workspace = "r+1" }), { desc = "Go to next workspace" })
 hl.bind(
 	mainMod .. " + CONTROL + Down",
 	hl.dsp.focus({ workspace = "empty" }),
@@ -182,10 +174,15 @@ hl.bind(
 )
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd(noctCall .. "volume-mute"), { locked = true, desc = "Toggle output mute" })
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(noctCall .. "mic-mute"), { locked = true, desc = "Toggle microphone mute" })
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd(noctCall .. "mic-mute"), { locked = true, desc = "Toggle microphone mute" })
 
 -- Media
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd(noctCall .. "media toggle"), { locked = true, desc = "Toggle media playback" })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd(noctCall .. "media toggle"), { locked = true, desc = "Toggle media playback" })
+hl.bind(
+	"XF86AudioPause",
+	hl.dsp.exec_cmd(noctCall .. "media toggle"),
+	{ locked = true, desc = "Toggle media playback" }
+)
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd(noctCall .. "media next"), { locked = true, desc = "Play next track" })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd(noctCall .. "media previous"), { locked = true, desc = "Play previous track" })
 
@@ -269,11 +266,7 @@ hl.bind(
 	hl.dsp.exec_cmd(noctCall .. "panel-toggle launcher /wall"),
 	{ desc = "Select a wallpaper" }
 )
-hl.bind(
-	mainMod .. " + SHIFT + T",
-	hl.dsp.exec_cmd(noctCall .. "panel-toggle wallpaper"),
-	{ desc = "Select a theme" }
-)
+hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd(noctCall .. "panel-toggle wallpaper"), { desc = "Select a theme" })
 
 --- Miscellaneous ---
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd(noctCall .. "session lock"), { desc = "Lock session" })
