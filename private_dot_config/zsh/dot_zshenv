@@ -1,0 +1,9 @@
+# --- Environment Module Loader ---
+# Source every Zsh file in $ZDOTDIR/env.d so environment variables and related
+# settings can be split into small, organized modules.
+#
+# The (N) glob qualifier makes the pattern expand to nothing if no matching
+# files exist, which prevents errors when the directory is empty.
+for file in "$ZDOTDIR"/env.d/*.zsh(N); do
+  source "$file"
+done

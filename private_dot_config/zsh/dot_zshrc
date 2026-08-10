@@ -1,0 +1,45 @@
+# --- 1. Core Path & XDG Setup ---
+export ZDOTDIR="${ZDOTDIR:-$HOME/.config/zsh}"
+
+load_zsh_file() {
+    local file="$1"
+    [[ -r "$file" ]] && source "$file"
+}
+
+# --- 2. Environment (env.d) ---
+# Load variables (XDG, PATH, Editor) first.
+for file in "$ZDOTDIR"/env.d/*.zsh(.N); do
+    load_zsh_file "$file"
+done
+
+# --- 3. Shell Behavior (rc.d) ---
+# Options, History, Completion styles.
+for file in "$ZDOTDIR"/rc.d/*.zsh(.N); do
+    load_zsh_file "$file"
+done
+
+# --- 4. Plugins (plugins) ---
+# OMZ and Zinit.
+for file in "$ZDOTDIR"/plugins/*.zsh(.N); do
+    load_zsh_file "$file"
+done
+
+# --- 5. Aliases & Functions ---
+# Load Functions first.
+# This ensures custom commands are defined before aliases try to reference them.
+for file in "$ZDOTDIR"/functions/*.zsh(.N); do
+    load_zsh_file "$file"
+done
+
+# Load Aliases second.
+# Loaded after plugins and functions so you can safely override plugin-provided
+# aliases or map aliases to your custom functions.
+for file in "$ZDOTDIR"/aliases/*.zsh(.N); do
+    load_zsh_file "$file"
+done
+
+# --- 6. Prompt (prompt) ---
+# Always last.
+for file in "$ZDOTDIR"/prompt/*.zsh(.N); do
+    load_zsh_file "$file"
+done
