@@ -9,8 +9,8 @@ initialize_fzf() {
   fi
 
   # Load candidate generators and preview settings before Fzf initialization.
-  [[ -r "$fzf_config_dir/config.zsh" ]] &&
-    source "$fzf_config_dir/config.zsh"
+  [[ -r "$fzf_config_dir/config.sh" ]] &&
+    source "$fzf_config_dir/config.sh"
 
   # Enable Fzf's standard key bindings and fuzzy completion.
   source <(fzf --zsh)
