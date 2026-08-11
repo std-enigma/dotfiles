@@ -9,10 +9,10 @@ fi
 # --- Keybinding Responsiveness ---
 
 # Configure the time Zsh waits for a multi-key sequence to complete.
-# A value of 15 equals 0.15 seconds and keeps Esc responsive without making
+# A value of 10 equals 0.10 seconds and keeps Esc responsive without making
 # normal-mode commands such as `dd`, `ciw`, or `gg` difficult to enter.
 initialize_keytimeout() {
-  KEYTIMEOUT=15
+  KEYTIMEOUT=10
 }
 
 # Zsh Vi Mode configures keymaps lazily and may replace its KEYTIMEOUT value
