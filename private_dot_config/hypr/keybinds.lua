@@ -64,7 +64,7 @@ hl.bind(
 	hl.dsp.window.resize({ x = 0, y = 30, relative = true }),
 	{ repeating = true, desc = "Resize window down" }
 )
-hl.bind(mainMod .. " + Z", hl.dsp.window.resize(), { mouse = true, desc = "Hold to resize window" })
+hl.bind(mainMod .. " + X", hl.dsp.window.resize(), { mouse = true, desc = "Hold to resize window" })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true, desc = "Hold to resize window" })
 
 -- Window Arrangement
@@ -100,7 +100,7 @@ hl.bind(mainMod .. " + SHIFT + CONTROL + Down", function()
 	local args = active_window.floating and { x = 0, y = 30, relative = true } or { direction = "down" }
 	hl.dispatch(hl.dsp.window.move(args))
 end, { repeating = true, desc = "Move focused window down" })
-hl.bind(mainMod .. " + X", hl.dsp.window.drag(), { mouse = true, desc = "Hold to move window" })
+hl.bind(mainMod .. " + Z", hl.dsp.window.drag(), { mouse = true, desc = "Hold to move window" })
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true, desc = "Hold to move window" })
 
 -- Window Grouping
