@@ -3,6 +3,9 @@
 # unique entries, automatically stripping any duplicates that might be added.
 typeset -U path PATH
 
+# Add GapCode's command directory with priority over system binaries.
+path=("/home/default/.gapcode/bin" $path)
+
 # Prepend the user's local bin directory to the path if it exists,
 # giving local binaries priority over system-wide ones.
 [[ -d "$HOME/.local/bin" ]] && path=("$HOME/.local/bin" $path)
