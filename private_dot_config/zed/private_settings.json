@@ -1,4 +1,22 @@
 {
+  "preview_tabs": {
+    "enable_keep_preview_on_code_navigation": true,
+    "enable_preview_from_file_finder": true,
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true,
+  },
+  "status_bar": {
+    "show_active_file": true,
+  },
+  "git_panel": {
+    "file_icons": true,
+  },
+  "project_panel": {
+    "diagnostic_badges": true,
+    "git_status_indicator": true,
+  },
   "format_on_save": "modifications_if_available",
   "telemetry": {
     "diagnostics": false,
