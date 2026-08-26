@@ -1,0 +1,32 @@
+{
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+    "anthropic_retention": false,
+  },
+  "relative_line_numbers": "enabled",
+  "use_smartcase_search": true,
+  "vim_mode": true,
+  "vim": {
+    "use_smartcase_find": true,
+    "use_system_clipboard": "on_yank",
+  },
+  "auto_install_extensions": {
+    "html": true,
+    "catppuccin": true,
+    "catppuccin-icons": true,
+    "discord-presence": true,
+    "git-firefly": true,
+    "toml": true,
+    "sql": true,
+  },
+  "base_keymap": "VSCode",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "icon_theme": "Zed (Default)",
+  "theme": {
+    "mode": "system",
+    "light": "Noctalia Light Transparent",
+    "dark": "Noctalia Dark Transparent",
+  },
+}
