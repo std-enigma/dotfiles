@@ -1,4 +1,5 @@
 {
+  "format_on_save": "modifications_if_available",
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
