@@ -4,6 +4,7 @@
 # Oh My Zsh custom plugins directory.
 if [[ -d "$ZSH_CUSTOM/plugins/zsh-vi-mode" ]]; then
   ZVM_INIT_MODE="sourcing"
+  ZVM_SYSTEM_CLIPBOARD_ENABLED=true
 fi
 
 # --- Keybinding Responsiveness ---
