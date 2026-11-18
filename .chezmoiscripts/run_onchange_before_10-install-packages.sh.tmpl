@@ -1,0 +1,46 @@
+{{- $tables := list .packages.base -}}
+{{- range .profiles -}}
+{{-   $tables = append $tables (index $.packages .) -}}
+{{- end -}}
+{{- range .gpus -}}
+{{-   $tables = append $tables (index $.packages.gpu .) -}}
+{{- end -}}
+{{- if .hyprland -}}{{- $tables = append $tables .packages.hyprland -}}{{- end -}}
+{{- if .cosmic -}}{{- $tables = append $tables .packages.cosmic -}}{{- end -}}
+{{- if .flatpak -}}{{- $tables = append $tables .packages.flatpak -}}{{- end -}}
+
+{{- $pacman := list -}}
+{{- $aur := list -}}
+{{- range $tables -}}
+{{-   $pacman = concat $pacman (get . "pacman" | default (list)) -}}
+{{-   $aur = concat $aur (get . "aur" | default (list)) -}}
+{{-   if has "gaming" $.profiles -}}
+{{-     $pacman = concat $pacman (get . "multilib" | default (list)) -}}
+{{-   end -}}
+{{-   if $.gui -}}
+{{-     $pacman = concat $pacman (get . "gui_pacman" | default (list)) -}}
+{{-     $aur = concat $aur (get . "gui_aur" | default (list)) -}}
+{{-   end -}}
+{{- end -}}
+#!/bin/bash
+# Re-runs automatically whenever the rendered package lists change (run_onchange_).
+set -euo pipefail
+
+pacman_packages=(
+{{- range $pacman | uniq | sortAlpha }}
+  {{ . | quote }}
+{{- end }}
+)
+aur_packages=(
+{{- range $aur | uniq | sortAlpha }}
+  {{ . | quote }}
+{{- end }}
+)
+
+echo ">> Installing ${#pacman_packages[@]} repo packages"
+sudo pacman -Syu --needed --noconfirm "${pacman_packages[@]}"
+
+if [ "${#aur_packages[@]}" -gt 0 ]; then
+  echo ">> Installing ${#aur_packages[@]} AUR packages"
+  paru -S --needed --noconfirm "${aur_packages[@]}"
+fi

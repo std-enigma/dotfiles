@@ -1,0 +1,18 @@
+# Skipped automatically on WSL.
+[packages.gaming]
+pacman = [
+  "gamemode", "mangohud", "gamescope",
+  "lutris", "wine-staging", "winetricks", "protontricks",
+  "vulkan-icd-loader",
+]
+# Needs the [multilib] repo; the bootstrap script enables it when gaming is selected
+multilib = [
+  "steam",
+  "lib32-gamemode", "lib32-mangohud",
+  "lib32-vulkan-icd-loader",
+]
+aur = [
+  "protonup-qt",
+  "heroic-games-launcher-bin",
+]
+# Optional extras (uncomment): "discord", "prismlauncher"

@@ -1,0 +1,18 @@
+# Individual packages instead of the `cosmic` group, so apps can be dropped.
+# Dropped on purpose: cosmic-terminal, cosmic-text-editor, cosmic-greeter (Noctalia greeter is used).
+[packages.cosmic]
+pacman = [
+  "cosmic-session", "cosmic-comp", "cosmic-panel", "cosmic-applets",
+  "cosmic-launcher", "cosmic-app-library", "cosmic-workspaces",
+  "cosmic-settings", "cosmic-settings-daemon",
+  "cosmic-notifications", "cosmic-osd", "cosmic-idle",
+  "cosmic-bg", "cosmic-randr", "cosmic-screenshot",
+  "cosmic-files", "cosmic-sound-theme",
+  "xdg-desktop-portal-cosmic",
+  "greetd", "noctalia-greeter",
+  "networkmanager",
+  "bluez", "bluez-utils",
+  # Optional (uncomment): "cosmic-store", "cosmic-player", "cosmic-viewer",
+  # "cosmic-wallpapers", "cosmic-initial-setup", "cosmic-osk", "cosmic-monitor",
+]
+aur = []

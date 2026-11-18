@@ -1,0 +1,6 @@
+[packages.base]
+pacman = [
+  "base-devel",
+  "git",
+]
+aur = []

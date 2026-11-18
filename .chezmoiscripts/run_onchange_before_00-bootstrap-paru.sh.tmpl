@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+{{ if has "gaming" .profiles }}
+if ! grep -q '^\[multilib\]' /etc/pacman.conf; then
+  echo ">> Enabling [multilib]"
+  sudo sed -i '/^#\[multilib\]/{s/^#//;n;s/^#//}' /etc/pacman.conf
+fi
+{{ end }}
+if ! command -v paru >/dev/null 2>&1; then
+  echo ">> Bootstrapping paru"
+  sudo pacman -Sy --needed --noconfirm base-devel git
+  workdir="$(mktemp -d)"
+  trap 'rm -rf "$workdir"' EXIT
+  git clone https://aur.archlinux.org/paru.git "$workdir/paru"
+  (cd "$workdir/paru" && makepkg -si --noconfirm)
+fi

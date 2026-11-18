@@ -1,0 +1,48 @@
+{{- /* Asked once on `chezmoi init`; re-ask with `chezmoi init --prompt` */ -}}
+{{- $isWSL := false -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{-   if contains "microsoft" (.chezmoi.kernel.osrelease | lower) -}}
+{{-     $isWSL = true -}}
+{{-   end -}}
+{{- end -}}
+
+{{- $profileInput := promptStringOnce . "profileInput" "Profiles, comma-separated (minimal, gaming, work). minimal is always included" "minimal" -}}
+{{- $profiles := list "minimal" -}}
+{{- range (splitList "," (replace " " "" $profileInput)) -}}
+{{-   if and (has . (list "gaming" "work")) (not (has . $profiles)) -}}
+{{-     $profiles = append $profiles . -}}
+{{-   end -}}
+{{- end -}}
+
+{{- $gpus := list -}}
+{{- $hyprland := false -}}
+{{- $cosmic := false -}}
+{{- $flatpak := false -}}
+{{- if $isWSL -}}
+{{-   $profiles = without $profiles "gaming" -}}
+{{- else -}}
+{{-   $gpuInput := promptStringOnce . "gpuInput" "GPU drivers, comma-separated (intel, amd, nvidia; empty for none)" "" -}}
+{{-   range (splitList "," (replace " " "" $gpuInput)) -}}
+{{-     if has . (list "intel" "amd" "nvidia") -}}
+{{-       $gpus = append $gpus . -}}
+{{-     end -}}
+{{-   end -}}
+{{-   if or (has "gaming" $profiles) (has "work" $profiles) -}}
+{{-     $hyprland = promptBoolOnce . "hyprland" "Install Hyprland + Noctalia + Noctalia greeter" true -}}
+{{-     $cosmic = promptBoolOnce . "cosmic" "Install COSMIC desktop (secondary)" false -}}
+{{-   end -}}
+{{-   $flatpak = promptBoolOnce . "flatpak" "Install Flatpak (with Flathub)" false -}}
+{{- end -}}
+
+[data]
+    profileInput = {{ $profileInput | quote }}
+{{- if not $isWSL }}
+    gpuInput = {{ (join "," $gpus) | quote }}
+{{- end }}
+    isWSL = {{ $isWSL }}
+    profiles = {{ $profiles | toJson }}
+    gpus = {{ $gpus | toJson }}
+    hyprland = {{ $hyprland }}
+    cosmic = {{ $cosmic }}
+    flatpak = {{ $flatpak }}
+    gui = {{ not $isWSL }}

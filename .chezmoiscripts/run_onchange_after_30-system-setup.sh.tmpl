@@ -1,0 +1,35 @@
+{{- if not .isWSL -}}
+#!/bin/bash
+set -euo pipefail
+{{ if or .hyprland .cosmic }}
+# Noctalia greeter: greetd must launch noctalia-greeter-session (not the greeter binary)
+if ! grep -qs 'noctalia-greeter-session' /etc/greetd/config.toml; then
+  sudo install -d /etc/greetd
+  sudo tee /etc/greetd/config.toml >/dev/null <<'EOF'
+[terminal]
+vt = 1
+
+[default_session]
+command = "/usr/bin/noctalia-greeter-session"
+user = "greeter"
+EOF
+fi
+sudo systemd-tmpfiles --create noctalia-greeter.conf
+sudo noctalia-greeter-apply-appearance --setup-system || echo "!! noctalia-greeter-apply-appearance failed; see docs.noctalia.dev/greeter/troubleshooting"
+sudo systemctl enable greetd.service \
+  || echo "!! Could not enable greetd (another display manager enabled?). Disable it, then: sudo systemctl enable greetd"
+sudo systemctl enable NetworkManager.service
+{{ end }}
+{{- if or .hyprland .cosmic }}
+sudo systemctl enable bluetooth.service
+{{ end }}
+{{- if has "work" .profiles }}
+sudo systemctl enable docker.service
+sudo usermod -aG docker "$USER"
+{{ end }}
+{{- if has "nvidia" .gpus }}
+echo 'options nvidia_drm modeset=1' | sudo tee /etc/modprobe.d/nvidia.conf >/dev/null
+echo 'options nvidia NVreg_PreserveVideoMemoryAllocations=1' | sudo tee /etc/modprobe.d/nvidia-power.conf >/dev/null
+sudo systemctl enable nvidia-suspend.service nvidia-hibernate.service nvidia-resume.service
+{{ end }}
+{{- end -}}

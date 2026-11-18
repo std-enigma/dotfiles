@@ -1,0 +1,12 @@
+# Terminal-only. Must work on any terminal and under WSL: nothing GUI here.
+[packages.minimal]
+pacman = [
+  "openssh", "curl", "unzip", "man-db",
+  "zsh", "starship", "tmux",
+  "helix",
+  "kitty-terminfo",
+  "ripgrep", "fd", "fzf", "bat", "eza", "zoxide", "jq", "htop",
+  "git-delta", "lazygit", "github-cli",
+  "mise",
+]
+aur = []

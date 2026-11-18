@@ -1,0 +1,16 @@
+# Selected on init. Laptop: intel + nvidia (Intel stays primary). Desktop PC: amd.
+[packages.gpu.intel]
+pacman = ["mesa", "vulkan-intel", "intel-media-driver"]
+multilib = ["lib32-mesa", "lib32-vulkan-intel"]
+aur = []
+
+[packages.gpu.amd]
+pacman = ["mesa", "vulkan-radeon"]
+multilib = ["lib32-mesa", "lib32-vulkan-radeon"]
+aur = []
+
+# nvidia-open matches the stock `linux` kernel. For other kernels use nvidia-open-dkms + headers.
+[packages.gpu.nvidia]
+pacman = ["nvidia-open", "nvidia-utils", "nvidia-prime", "nvidia-settings"]
+multilib = ["lib32-nvidia-utils"]
+aur = []

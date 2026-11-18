@@ -1,0 +1,21 @@
+[packages.work]
+# Developer tools that also make sense in a terminal/WSL
+pacman = [
+  "neovim",
+  "docker", "docker-compose", "docker-buildx",
+  "kubectl", "k9s",
+]
+aur = []
+# Desktop-only (skipped on WSL)
+gui_pacman = [
+  "kitty",
+  "firefox", "chromium",
+  "obsidian",
+  "wl-clipboard",
+  "ttf-jetbrains-mono-nerd", "noto-fonts", "noto-fonts-emoji",
+]
+gui_aur = [
+  "visual-studio-code-bin",
+  "slack-desktop",
+  "1password",
+]

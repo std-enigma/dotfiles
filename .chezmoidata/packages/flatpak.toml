@@ -1,0 +1,5 @@
+[packages.flatpak]
+pacman = ["flatpak"]
+aur = []
+# Flathub app IDs, e.g. "com.spotify.Client", "org.mozilla.firefox"
+apps = []

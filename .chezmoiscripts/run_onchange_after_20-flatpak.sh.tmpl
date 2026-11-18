@@ -1,0 +1,15 @@
+{{- if .flatpak -}}
+#!/bin/bash
+set -euo pipefail
+flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+flatpak_apps=(
+{{- range .packages.flatpak.apps }}
+  {{ . | quote }}
+{{- end }}
+)
+
+if [ "${#flatpak_apps[@]}" -gt 0 ]; then
+  flatpak install --user --noninteractive flathub "${flatpak_apps[@]}"
+fi
+{{- end -}}
