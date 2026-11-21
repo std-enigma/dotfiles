@@ -6,13 +6,9 @@
 {{-   end -}}
 {{- end -}}
 
-{{- $profileInput := promptStringOnce . "profileInput" "Profiles, comma-separated (minimal, gaming, work). minimal is always included" "minimal" -}}
-{{- $profiles := list "minimal" -}}
-{{- range (splitList "," (replace " " "" $profileInput)) -}}
-{{-   if and (has . (list "gaming" "work")) (not (has . $profiles)) -}}
-{{-     $profiles = append $profiles . -}}
-{{-   end -}}
-{{- end -}}
+{{- /* minimal is always included, so it is not offered as a choice */ -}}
+{{- $extraProfiles := promptMultichoiceOnce . "extraProfiles" "Extra profiles (minimal is always included)" (list "gaming" "work") (list) -}}
+{{- $profiles := concat (list "minimal") $extraProfiles -}}
 
 {{- $gpus := list -}}
 {{- $hyprland := false -}}
@@ -21,12 +17,7 @@
 {{- if $isWSL -}}
 {{-   $profiles = without $profiles "gaming" -}}
 {{- else -}}
-{{-   $gpuInput := promptStringOnce . "gpuInput" "GPU drivers, comma-separated (intel, amd, nvidia; empty for none)" "" -}}
-{{-   range (splitList "," (replace " " "" $gpuInput)) -}}
-{{-     if has . (list "intel" "amd" "nvidia") -}}
-{{-       $gpus = append $gpus . -}}
-{{-     end -}}
-{{-   end -}}
+{{-   $gpus = promptMultichoiceOnce . "gpus" "GPU drivers (none is fine)" (list "intel" "amd" "nvidia") (list) -}}
 {{-   if or (has "gaming" $profiles) (has "work" $profiles) -}}
 {{-     $hyprland = promptBoolOnce . "hyprland" "Install Hyprland + Noctalia + Noctalia greeter" true -}}
 {{-     $cosmic = promptBoolOnce . "cosmic" "Install COSMIC desktop (secondary)" false -}}
@@ -34,21 +25,16 @@
 {{-   $flatpak = promptBoolOnce . "flatpak" "Install Flatpak (with Flathub)" false -}}
 {{- end -}}
 
-{{- $themeInput := promptStringOnce . "themeInput" "Theme (noctalia, catppuccin)" "noctalia" -}}
-{{- $theme := "noctalia" -}}
-{{- if has $themeInput (list "noctalia" "catppuccin") -}}
-{{-   $theme = $themeInput -}}
-{{- end -}}
+{{- $theme := promptChoiceOnce . "theme" "Theme" (list "noctalia" "catppuccin") "noctalia" -}}
+{{- $variant := promptChoiceOnce . "variant" "Variant" (list "dark" "light") "dark" -}}
 
 [data]
-    profileInput = {{ $profileInput | quote }}
-    theme = {{ $theme | quote }} 
-{{- if not $isWSL }}
-    gpuInput = {{ (join "," $gpus) | quote }}
-{{- end }}
+    extraProfiles = {{ $extraProfiles | toJson }}
+    theme = {{ $theme | quote }}
+    variant = {{ $variant | quote }}
+    gpus = {{ $gpus | toJson }}
     isWSL = {{ $isWSL }}
     profiles = {{ $profiles | toJson }}
-    gpus = {{ $gpus | toJson }}
     hyprland = {{ $hyprland }}
     cosmic = {{ $cosmic }}
     flatpak = {{ $flatpak }}

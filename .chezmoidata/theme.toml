@@ -1,0 +1,4 @@
+# Maps the generic dark/light variant to each palette's own flavor name.
+[catppuccin.flavor]
+dark = "mocha"
+light = "latte"

@@ -11,7 +11,7 @@ gui_pacman = [
   "kitty",
   "firefox",
   "wl-clipboard",
-  "ttf-jetbrains-mono-nerd", "noto-fonts", "noto-fonts-emoji",
+  "ttf-cascadia-mono-nerd", "ttf-jetbrains-mono-nerd", "noto-fonts", "noto-fonts-emoji",
 ]
 gui_aur = [
   "visual-studio-code-bin",

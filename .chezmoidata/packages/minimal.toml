@@ -1,7 +1,7 @@
 # Terminal-only. Must work on any terminal and under WSL: nothing GUI here.
 [packages.minimal]
 pacman = [
-  "openssh", "curl", "unzip", "man-db",
+  "openssh", "rsync", "curl", "unzip", "man-db",
   "zsh", "starship", "tmux",
   "yazi", "helix",
   "kitty-terminfo",
