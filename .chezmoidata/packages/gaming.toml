@@ -2,7 +2,7 @@
 [packages.gaming]
 pacman = [
   "gamemode", "mangohud", "gamescope",
-  "lutris", "wine-staging", "winetricks", "protontricks",
+  "wine-staging", "winetricks", "protontricks",
   "vulkan-icd-loader",
 ]
 # Needs the [multilib] repo; the bootstrap script enables it when gaming is selected
@@ -13,6 +13,6 @@ multilib = [
 ]
 aur = [
   "protonup-qt",
-  "heroic-games-launcher-bin",
+  "vesktop-bin",
+  "gdlauncher-carbon-bin",
 ]
-# Optional extras (uncomment): "discord", "prismlauncher"

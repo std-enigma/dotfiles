@@ -1,14 +1,14 @@
-# Noctalia v5 replaces bar/launcher/notifications/lock/OSD, so no waybar/rofi/mako.
-# sdbus-cpp is already a dependency of noctalia.
+# Noctalia v5 replaces bar/launcher/notifications/lock/OSD.
 [packages.hyprland]
 pacman = [
-  "hyprland", "hyprlock", "hypridle",
+  "uwsm", "hyprland", "hyprlock", "hypridle",
   "xdg-desktop-portal-hyprland", "xdg-desktop-portal-gtk", "hyprpolkitagent",
+  "gnome-keyring",
   "noctalia", "noctalia-greeter", "greetd",
   "pipewire", "wireplumber", "pipewire-pulse",
   "qt5-wayland", "qt6-wayland",
   "brightnessctl", "grim", "slurp", "cliphist",
   "networkmanager", "bluez", "bluez-utils",
-  "thunar", "gvfs",
+  "dolphin", "gvfs",
 ]
 aur = []

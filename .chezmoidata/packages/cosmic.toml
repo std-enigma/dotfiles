@@ -8,11 +8,12 @@ pacman = [
   "cosmic-notifications", "cosmic-osd", "cosmic-idle",
   "cosmic-bg", "cosmic-randr", "cosmic-screenshot",
   "cosmic-files", "cosmic-sound-theme",
+  "cosmic-player", "cosmic-viewer",
+  "cosmic-osk", "cosmic-monitor",
   "xdg-desktop-portal-cosmic",
+  "gnome-keyring",
   "greetd", "noctalia-greeter",
   "networkmanager",
   "bluez", "bluez-utils",
-  # Optional (uncomment): "cosmic-store", "cosmic-player", "cosmic-viewer",
-  # "cosmic-wallpapers", "cosmic-initial-setup", "cosmic-osk", "cosmic-monitor",
 ]
 aur = []

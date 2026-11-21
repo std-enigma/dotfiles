@@ -3,7 +3,7 @@
 pacman = [
   "openssh", "curl", "unzip", "man-db",
   "zsh", "starship", "tmux",
-  "helix",
+  "yazi", "helix",
   "kitty-terminfo",
   "ripgrep", "fd", "fzf", "bat", "eza", "zoxide", "jq", "htop",
   "git-delta", "lazygit", "github-cli",
