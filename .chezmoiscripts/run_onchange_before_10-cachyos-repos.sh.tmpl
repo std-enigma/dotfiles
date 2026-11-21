@@ -1,0 +1,48 @@
+{{- /* Plain Arch (and EndeavourOS, which uses stock Arch repos) only. CachyOS (ID=cachyos) and other derivatives such as Manjaro render an empty script, which chezmoi skips. */ -}}
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.arch "amd64") (has (.chezmoi.osRelease.id | default "") (list "arch")) -}}
+#!/bin/bash
+# Installs CachyOS optimized repos using the official automated installer
+# (https://wiki.cachyos.org/features/optimized_repos/), wrapped so that it is:
+#   - pinned: tarball is verified against a sha256 (bump it after reviewing upstream changes)
+#   - idempotent: skipped if any [cachyos*] repo is already in pacman.conf
+#   - non-destructive: upstream's unconditional `pacman -Syu` is removed and
+#     `pacman -U` is made non-interactive. No upgrade happens here.
+# The installer itself picks v3 / v4 / znver4 from the CPU and edits pacman.conf.
+set -euo pipefail
+
+url=https://mirror.cachyos.org/cachyos-repo.tar.xz
+sha256=5b3ba76080b570d9935e10ace5ef16f43667289b08752b03333a6546f0910020
+
+if grep -Eq '^[[:space:]]*\[cachyos' /etc/pacman.conf; then
+  echo ">> CachyOS repositories already configured; skipping"
+  exit 0
+fi
+
+if ! /lib/ld-linux-x86-64.so.2 --help 2>/dev/null | grep -q 'x86-64-v3 (supported, searched)'; then
+  echo ">> CPU does not report x86-64-v3; skipping CachyOS repositories"
+  exit 0
+fi
+
+sudo pacman -S --needed --noconfirm gawk curl
+
+workdir="$(mktemp -d)"
+trap 'rm -rf "$workdir"' EXIT
+cd "$workdir"
+
+curl -fsSL "$url" -o cachyos-repo.tar.xz
+echo "$sha256  cachyos-repo.tar.xz" | sha256sum -c - \
+  || { echo "!! cachyos-repo.tar.xz changed upstream; review it and update the sha256 in this script"; exit 1; }
+tar -xf cachyos-repo.tar.xz
+cd cachyos-repo
+
+# Remove the automatic full upgrade and make pacman -U non-interactive
+sed -i -e '/^    pacman -Syu$/d' -e 's/^    pacman -U "/    pacman -U --noconfirm --needed "/' cachyos-repo.sh
+if grep -q 'pacman -Syu' cachyos-repo.sh || ! grep -q 'pacman -U --noconfirm --needed' cachyos-repo.sh; then
+  echo "!! Could not patch cachyos-repo.sh safely; aborting"
+  exit 1
+fi
+
+sudo bash ./cachyos-repo.sh --install
+
+echo ">> CachyOS repositories added. No packages were upgraded; the next pacman -Syu will switch to optimized builds."
+{{- end -}}
