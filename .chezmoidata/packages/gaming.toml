@@ -4,6 +4,7 @@ pacman = [
   "gamemode", "mangohud", "gamescope",
   "wine-staging", "winetricks", "protontricks",
   "vulkan-icd-loader",
+  "cachyos-gaming-meta",
 ]
 # Needs the [multilib] repo; the bootstrap script enables it when gaming is selected
 multilib = [

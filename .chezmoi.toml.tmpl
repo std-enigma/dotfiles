@@ -1,10 +1,4 @@
 {{- /* Asked once on `chezmoi init`; re-ask with `chezmoi init --prompt` */ -}}
-{{- $themeInput := promptStringOnce . "themeInput" "Theme (noctalia, catppuccin)" "noctalia" -}}
-{{- $theme := "noctalia" -}}
-{{- if has $themeInput (list "noctalia" "catppuccin") -}}
-{{-   $theme = $themeInput -}}
-{{- end -}}
-
 {{- $isWSL := false -}}
 {{- if eq .chezmoi.os "linux" -}}
 {{-   if contains "microsoft" (.chezmoi.kernel.osrelease | lower) -}}
@@ -38,6 +32,12 @@
 {{-     $cosmic = promptBoolOnce . "cosmic" "Install COSMIC desktop (secondary)" false -}}
 {{-   end -}}
 {{-   $flatpak = promptBoolOnce . "flatpak" "Install Flatpak (with Flathub)" false -}}
+{{- end -}}
+
+{{- $themeInput := promptStringOnce . "themeInput" "Theme (noctalia, catppuccin)" "noctalia" -}}
+{{- $theme := "noctalia" -}}
+{{- if has $themeInput (list "noctalia" "catppuccin") -}}
+{{-   $theme = $themeInput -}}
 {{- end -}}
 
 [data]
