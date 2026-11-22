@@ -9,6 +9,15 @@
 {{- if .cosmic -}}{{- $tables = append $tables .packages.cosmic -}}{{- end -}}
 {{- if .flatpak -}}{{- $tables = append $tables .packages.flatpak -}}{{- end -}}
 
+{{- $devTables := list -}}
+{{- range $category, $groups := .packages.development -}}
+{{-   range $group, $table := $groups -}}
+{{-     if has $group $.devGroups -}}
+{{-       $devTables = append $devTables $table -}}
+{{-     end -}}
+{{-   end -}}
+{{- end -}}
+
 {{- $pacman := list -}}
 {{- $aur := list -}}
 {{- range $tables -}}
@@ -22,6 +31,19 @@
 {{-     $aur = concat $aur (get . "gui_aur" | default (list)) -}}
 {{-   end -}}
 {{- end -}}
+
+{{- range $devTables -}}
+{{-   $pacman = concat $pacman (get . "pacman" | default (list)) -}}
+{{-   $aur = concat $aur (get . "aur" | default (list)) -}}
+{{-   if and $.gui (has "work" $.profiles) -}}
+{{-     $pacman = concat $pacman (get . "gui_pacman" | default (list)) -}}
+{{-     $aur = concat $aur (get . "gui_aur" | default (list)) -}}
+{{-   end -}}
+{{- end -}}
+#!/bin/bash
+# Re-runs automatically whenever the rendered package lists change (run_onchange_).
+set -euo pipefail
+
 #!/bin/bash
 # Re-runs automatically whenever the rendered package lists change (run_onchange_).
 set -euo pipefail

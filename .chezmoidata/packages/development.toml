@@ -1,0 +1,19 @@
+[packages.development.languages.go]
+pacman = ["go", "gopls", "delve", "golangci-lint"]
+
+[packages.development.languages.python]
+pacman = ["python", "python-pip", "python-virtualenv", "uv", "ruff"]
+aur = ["basedpyright-bin"]
+
+[packages.development.languages.lua]
+pacman = ["lua", "luarocks", "lua-language-server", "stylua"]
+
+[packages.development.runtimes.node]
+pacman = ["nodejs", "npm"]
+
+[packages.development.databases.postgres]
+pacman = ["postgresql"]
+
+[packages.development.databases.sqlite]
+pacman = ["sqlite"]
+gui_pacman = ["sqlitebrowser"]

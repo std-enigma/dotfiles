@@ -27,11 +27,13 @@
 
 {{- $theme := promptChoiceOnce . "theme" "Theme" (list "noctalia" "catppuccin") "noctalia" -}}
 {{- $variant := promptChoiceOnce . "variant" "Variant" (list "dark" "light") "dark" -}}
+{{- $devGroups := promptMultichoiceOnce . "devGroups" "Development package groups" (list "go" "python" "lua" "node" "postgres" "sqlite") (list "node" "python") -}}
 
 [data]
     extraProfiles = {{ $extraProfiles | toJson }}
     theme = {{ $theme | quote }}
     variant = {{ $variant | quote }}
+    devGroups = {{ $devGroups | toJson }}
     gpus = {{ $gpus | toJson }}
     isWSL = {{ $isWSL }}
     profiles = {{ $profiles | toJson }}
