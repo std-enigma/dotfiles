@@ -1,0 +1,5 @@
+{{ if eq .theme "noctalia" -}}
+source "$XDG_CONFIG_HOME/fzf/themes/noctalia.sh"
+{{- else if eq .theme "catppuccin" -}}
+source "$XDG_CONFIG_HOME/fzf/themes/catppuccin-{{ index .catppuccin.flavor .variant }}.sh"
+{{- end }}
