@@ -12,7 +12,7 @@ if [[ -o interactive && -t 1 && -z "${PERSONAL_ART_SHOWN:-}" ]]; then
   elif command -v pokemon-colorscripts >/dev/null 2>&1; then
     pokemon-colorscripts --no-title -r 1,3,6
   elif command -v fastfetch >/dev/null 2>&1; then
-    if do_render "image"; then
+    if [[ $TERM == xterm-kitty ]]; then
       fastfetch --logo-type kitty
     else
       fastfetch

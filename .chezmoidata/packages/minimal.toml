@@ -1,12 +1,15 @@
 # Terminal-only. Must work on any terminal and under WSL: nothing GUI here.
 [packages.minimal]
 pacman = [
-  "openssh", "rsync", "curl", "unzip", "man-db",
-  "zsh", "starship", "tmux",
+  "openssh", "rsync", "curl", "unzip", "man-db", "sudo",
+  "zsh", "starship", "tmux", "xdg-user-dirs",
   "yazi", "helix",
   "kitty-terminfo",
   "ripgrep", "fd", "fzf", "bat", "eza", "zoxide", "jq", "htop",
   "git-delta", "lazygit", "github-cli",
+  "fastfetch", "thefuck", "tealdeer",
   "mise",
 ]
-aur = []
+aur = [
+  "oh-my-zsh-git", "pokego-bin",
+]
