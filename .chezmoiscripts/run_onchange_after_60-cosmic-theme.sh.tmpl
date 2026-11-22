@@ -1,0 +1,19 @@
+{{- if and .cosmic (eq .theme "catppuccin") -}}
+{{- $flavor := index .catppuccin.flavor .variant -}}
+{{- $themeFile := printf "%s/cosmic-themes/catppuccin-%s.ron" .chezmoi.sourceDir $flavor -}}
+#!/bin/bash
+# Re-runs when the variant changes or the theme file contents change (run_onchange_).
+# theme hash: {{ include (printf "cosmic-themes/catppuccin-%s.ron" $flavor) | sha256sum }}
+set -euo pipefail
+
+theme_file={{ $themeFile | quote }}
+
+if ! command -v cosmic-settings >/dev/null 2>&1; then
+  echo "!! cosmic-settings not found; skipping COSMIC theme import"
+  exit 0
+fi
+
+echo ">> Importing COSMIC theme: catppuccin-{{ $flavor }}"
+cosmic-settings appearance import "$theme_file" \
+  || echo "!! COSMIC theme import failed; try manually: cosmic-settings appearance import $theme_file"
+{{- end -}}

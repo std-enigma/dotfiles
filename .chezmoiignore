@@ -3,3 +3,6 @@ LICENSE
 
 # Ignore the README file
 README.md
+
+# Ignore the COSMIC theme source directory
+cosmic-themes
