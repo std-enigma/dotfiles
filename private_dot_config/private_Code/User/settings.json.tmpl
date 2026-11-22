@@ -1,0 +1,43 @@
+{
+    // --- Theme & Appearance ---
+    "workbench.iconTheme": "catppuccin-{{ index .catppuccin.flavor .variant }}",
+    "workbench.colorTheme": "Catppuccin {{ index .catppuccin.flavor .variant | title }}",
+    "workbench.preferredLightColorTheme": "Catppuccin Latte",
+    "workbench.preferredDarkColorTheme": "Catppuccin Mocha",
+    "editor.minimap.enabled": false,
+    // --- UI Minimalism (Reclaiming Space) ---
+    "window.menuBarVisibility": "compact",
+    "window.commandCenter": false,
+    "workbench.layoutControl.enabled": false,
+    "workbench.browser.showInTitleBar": false,
+    // --- Scrolling & Animations ---
+    "editor.smoothScrolling": true,
+    "workbench.list.smoothScrolling": true,
+    "terminal.integrated.smoothScrolling": true,
+    "editor.cursorSmoothCaretAnimation": "on",
+    // --- Editor Behavior ---
+    "editor.lineNumbers": "relative",
+    "editor.showFoldingControls": "always",
+    "editor.formatOnSave": true,
+    // --- File Management ---
+    "files.autoSave": "onFocusChange",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    // --- Version Control (GitLens) ---
+    "gitlens.launchpad.indicator.enabled": false,
+    // --- Neovim Integration ---
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "vscode-neovim.compositeKeys": {
+        "jj": {
+            "command": "vscode-neovim.escape"
+        },
+        "jk": {
+            "command": "vscode-neovim.escape"
+        }
+    },
+    // --- Privacy/AI ---
+    "chat.disableAIFeatures": true,
+    "workbench.activityBar.location": "bottom",
+}
