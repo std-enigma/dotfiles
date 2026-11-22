@@ -1,5 +1,9 @@
 # --- Colorscheme ---
+{{ if eq .theme "noctalia" -}}
 theme = "noctalia"
+{{- else if eq .theme "catppuccin" -}}
+theme = "catppuccin_{{ index .catppuccin.flavor .variant }}"
+{{- end }}
 
 # --- Editor Behavior ---
 [editor]
