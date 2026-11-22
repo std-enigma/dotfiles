@@ -1,0 +1,26 @@
+#!/bin/bash
+# Makes zsh the login shell (zsh itself comes from the minimal package list).
+# Idempotent: does nothing if zsh is already the login shell.
+set -euo pipefail
+
+user="$(id -un)"
+zsh_path="$(command -v zsh || true)"
+if [ -z "$zsh_path" ]; then
+  echo "!! zsh not found; skipping default shell setup"
+  exit 0
+fi
+
+current="$(getent passwd "$user" | cut -d: -f7)"
+if [ "$current" = "$zsh_path" ]; then
+  echo ">> zsh is already the login shell for $user"
+  exit 0
+fi
+
+if ! grep -qxF "$zsh_path" /etc/shells; then
+  echo ">> Registering $zsh_path in /etc/shells"
+  echo "$zsh_path" | sudo tee -a /etc/shells >/dev/null
+fi
+
+echo ">> Changing login shell for $user to $zsh_path"
+sudo chsh -s "$zsh_path" "$user"
+echo ">> Log out and back in for the new shell to take effect."
