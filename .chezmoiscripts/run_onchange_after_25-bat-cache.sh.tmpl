@@ -1,0 +1,21 @@
+{{- /* Only rendered when bat is installed; chezmoi re-renders on every apply, so
+       the script appears once bat exists. run_onchange re-runs it whenever the
+       embedded theme list changes (theme added, removed, or edited). */ -}}
+{{- if lookPath "bat" -}}
+#!/bin/bash
+# Rebuilds bat's theme cache so themes from ~/.config/bat/themes are usable.
+# bat cache --build is safe to repeat; it just rewrites the cache.
+set -euo pipefail
+
+if ! command -v bat >/dev/null 2>&1; then
+  echo ">> bat not installed; skipping theme cache build"
+  exit 0
+fi
+
+# Bundled bat themes (name and size) so a theme change retriggers this script.
+{{ range glob (joinPath .chezmoi.sourceDir "private_dot_config/bat/themes/*") -}}
+# theme: {{ base . }} ({{ (stat .).size }} bytes)
+{{ end -}}
+echo ">> Building bat theme cache"
+bat cache --build
+{{- end -}}
