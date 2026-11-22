@@ -2,7 +2,7 @@
 {{ if eq .theme "noctalia" -}}
 include themes/noctalia.conf
 {{- else if eq .theme "catppuccin" -}}
-include themes/catppuccin_{{ index .catppuccin.flavor .variant }}.conf
+include themes/catppuccin-{{ index .catppuccin.flavor .variant }}.conf
 {{- end }}
 
 # --- Options ---
