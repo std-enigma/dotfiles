@@ -1,0 +1,12 @@
+---@type LazySpec
+return {
+	"AstroNvim/astroui",
+	---@type AstroUIOpts
+	opts = {
+{{- if eq .theme "catppuccin" }}
+		colorscheme = "catppuccin-{{ index .catppuccin.flavor .variant }}",
+{{- else }}
+		colorscheme = "astro{{ .variant }}",
+{{- end }}
+	},
+}
