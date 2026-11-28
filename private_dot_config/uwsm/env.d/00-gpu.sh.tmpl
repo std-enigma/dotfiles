@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+# NVIDIA session variables, rendered from chezmoi's `gpus` data.
+# uwsm sources every file in ~/.config/uwsm/env.d/*.sh.
+# Change `gpus` in the chezmoi config, then run `chezmoi apply`.
+
+{{- if has "nvidia" .gpus }}
+
+{{- if or (has "intel" .gpus) (has "amd" .gpus) }}
+# Hybrid system: keep NVIDIA available for PRIME render offload.
+export __NV_PRIME_RENDER_OFFLOAD=1
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+export __VK_LAYER_NV_optimus=NVIDIA_only
+{{- else }}
+# NVIDIA-only.
+export LIBVA_DRIVER_NAME=nvidia
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+{{- end }}
+
+# NVIDIA VA-API (libva-nvidia-driver) is optional; only opt in when present.
+if [ -f /usr/lib/dri/nvidia_drv_video.so ] || [ -f /usr/lib64/dri/nvidia_drv_video.so ]; then
+    export NVD_BACKEND=direct
+fi
+{{- end }}
