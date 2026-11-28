@@ -1,0 +1,9 @@
+[".local/share/icons/Bibata-Modern-Ice"]
+type = "archive"
+url = {{ gitHubLatestReleaseAssetURL "ful1e5/Bibata_Cursor" "Bibata-Modern-Ice.tar.xz" | quote }}
+stripComponents = 1
+
+[".local/share/icons/Bibata-Modern-Ice-Hyprcursor"]
+type = "archive"
+url = {{ gitHubLatestReleaseAssetURL "LOSEARDES77/Bibata-Cursor-hyprcursor" "hypr_Bibata-Modern-Ice.tar.gz" | quote }}
+stripComponents = 1
